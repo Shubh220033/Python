@@ -1,0 +1,51 @@
+<?php
+
+abstract class shape{
+    abstract public function calculatearea();
+}
+
+class reactangle extends shape{
+    private $length;
+    private $width;
+    public function __construct($length,$width){
+        $this->length=$length;
+        $this->width=$width;
+    }
+    public function calculatearea(){
+        $area= $this->length*$this->width;
+        echo "area of reactangle: ".$area."<br>";
+    }
+}
+
+class square extends shape{
+    private $length;
+    public function __construct($length){
+        $this->length=$length;
+    }
+    public function calculatearea(){
+        $area= $this->length**2;
+        echo "area of square: ".$area."<br>";
+    }
+}
+
+class triangle extends shape{
+    private $height;
+    private $base;
+    public function __construct($height,$base){
+        $this->height=$height;
+        $this->base=$base;
+    }
+    public function calculatearea(){
+        $area= 0.5*$this->base*$this->height;
+        echo "area of triangle: ".$area."<br>";
+    }
+}
+
+$reactangle = new reactangle(5,3);
+$reactangle->calculatearea();
+$square = new square(5);
+$square->calculatearea();
+$triangle = new triangle(50,10);
+$triangle->calculatearea();
+
+?>
