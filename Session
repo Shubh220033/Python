@@ -1,0 +1,95 @@
+Login.php
+<?php
+session_start(); // Start the session
+
+// Check if the user is already logged in
+if (isset($_SESSION['username'])) {
+    header("Location: welcome.php"); // Redirect to welcome page if logged in
+    exit();
+}
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Form</title>
+</head>
+<body>
+    <h2>Login Form</h2>
+    <form action="login.php" method="post">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required><br><br>
+        
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required><br><br>
+        
+        <input type="submit" value="Login">
+    </form>
+
+    <?php
+    // Handle login form submission
+    /*if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        $username = $_POST['username'];
+        $password = $_POST['password'];
+
+        // Hardcoded credentials (for demonstration purposes)
+        if ($username == "user" && $password == "password") {
+            $_SESSION['username'] = $username; // Store username in session
+            header("Location: welcome.php"); // Redirect to welcome page
+            exit();
+        } else {
+            echo "<p style='color:red;'>Invalid username or password!</p>";
+        }
+    }*/
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        $username = trim($_POST['username']);
+        $password = trim($_POST['password']); // Password is not validated
+
+        // Check if username is not empty
+        if (!empty($username)) {
+            $_SESSION['username'] = $username; // Store username in session
+            header("Location: welcome.php"); // Redirect to welcome page
+            exit();
+        } else {
+            echo "<p style='color:red;'>Please enter a username!</p>";
+        }
+    }
+    ?>
+</body>
+</html>
+
+Welcome.php
+<?php
+session_start(); // Start the session
+
+// Check if the user is logged in
+if (!isset($_SESSION['username'])) {
+    header("Location: login.php"); // Redirect to login page if not logged in
+    exit();
+}
+
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome</title>
+</head>
+<body>
+    <h2>Welcome, <?php echo $_SESSION['username']; ?>!</h2>
+    <p>This is a protected page only accessible after logging in.</p>
+    <a href="logout.php">Logout</a>
+</body>
+</html>
+
+Logout.php
+<?php
+session_start(); // Start the session
+session_destroy(); // Destroy the session
+header("Location: login.php"); // Redirect to login page
+exit();
+?>
