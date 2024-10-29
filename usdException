@@ -1,0 +1,70 @@
+<?php
+
+// User-defined exception class
+class InsufficientFundsException extends Exception
+{
+    public function __construct($message)
+    {
+        parent::__construct($message);
+    }
+}
+
+// BankAccount class
+class BankAccount
+{
+    private $accountNumber;
+    private $accountHolder;
+    private $balance;
+
+    public function __construct($accountNumber, $accountHolder, $initialBalance)
+    {
+        $this->accountNumber = $accountNumber;
+        $this->accountHolder = $accountHolder;
+        $this->balance = $initialBalance;
+    }
+
+    public function deposit($amount)
+    {
+        if ($amount > 0) {
+            $this->balance += $amount;
+            echo "Deposited: $amount\n";
+        } else {
+            echo "Deposit amount must be positive.\n";
+        }
+    }
+
+    public function withdraw($amount)
+    {
+        if ($amount > $this->balance) {
+            throw new InsufficientFundsException("Insufficient funds for withdrawal of $amount.");
+        }
+        $this->balance -= $amount;
+        echo "Withdrew: $amount\n";
+    }
+
+    public function displayAccountDetails()
+    {
+        return "Account Number: $this->accountNumber, Account Holder: $this->accountHolder, Balance: $this->balance";
+    }
+}
+
+// Testing the BankAccount class
+try {
+    $account = new BankAccount("123456789", "John Doe", 500);
+
+    // Display initial account details
+    echo $account->displayAccountDetails() . "\n";
+
+    // Deposit money
+    $account->deposit(200);
+    
+    // Withdraw money
+    $account->withdraw(6000); // This should trigger the exception
+
+    // Display final account details
+    echo $account->displayAccountDetails()."\n";
+} catch (InsufficientFundsException $e) {
+    echo "<br>Error: " . $e->getMessage()."\n";
+} /*catch (Exception $e) {
+    echo "An error occurred: " . $e->getMessage()."\n";
+}*/
