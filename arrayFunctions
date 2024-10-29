@@ -1,0 +1,61 @@
+<?php
+
+    //Upper and Lower
+    $names = array("Jack","a","B");
+    for($i=0; $i<sizeof($names); $i++){
+        echo strtoupper($names[$i]. " ");
+    }
+    echo "<br>";
+    for($i=0; $i<sizeof($names); $i++){
+        echo strtolower($names[$i]. " ");
+    }
+    echo "<br><br>";
+
+    //Display number between 200 to 250 dvisible by 4
+    for($i=200; $i<=250; $i++){
+        if($i%4==0){
+            echo $i. "<br>";
+        }
+    }
+    echo "<br><br>";
+
+    //Shortest and longest in array
+    $name = array("shubh", "dishita", "vihaan");
+    $min_len = strlen($name[0]);  
+    $max_len = strlen($name[0]);  
+
+    for ($i = 1; $i < sizeof($name); $i++) {
+        $length = strlen($name[$i]);
+        if ($length < $min_len) {
+            $min_len = $length;
+        }
+        if ($length > $max_len) {
+            $max_len = $length;
+        }
+    }
+    echo "Shortest length is $min_len and longest length is $max_len <br><br>";
+
+
+    //multidimenstional arrayy
+    $students = array(
+        array("Dishita", 18, "A+")
+    );
+    echo "Name of 1st person: " , $students[0][0],"<br>";
+    echo "age of the person: ", $students[0][1];
+
+
+    //associative array 
+    $person = array(
+        "name" => "John Doe",
+        "age" => 30,
+        "city" => "New York"
+    );
+    echo "Name: " , $person["name"] , "<br>";
+    echo "Age: " , $person["age"] , "<br>";
+    echo "City: " , $person["city"];
+
+
+    //indexed array
+    $students = array("chudasama","dishita");
+    echo $students[1];
+?>
