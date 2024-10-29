@@ -1,0 +1,35 @@
+<?php
+class Employee
+{
+	public $name;
+	public $id;
+	public $salary;
+	public function __construct($name,$id,$salary)
+	{
+		$this->name=$name;
+		$this->id=$id;
+		$this->salary=$salary;
+	}
+	public function getDetails()
+	{
+		return "Name: $this->name, ID: $this->id, Salary: $this->salary";
+	}
+}
+class Manager extends Employee
+{
+	public $department;
+	public function __construct($name,$id,$salary,$department)
+	{
+		parent::__construct($name,$id,$salary);
+		$this->department=$department;
+	}
+	public function getDetails()
+	{
+		return parent::getDetails().",department: $this->department";
+	}
+}
+$manager1=new Manager("Tom","1","50000","IT");
+$manager2=new Manager("Alice","2","40000","CA");
+echo $manager1->getDetails() . "\n";
+echo $manager2->getDetails() . "\n";
+?>
