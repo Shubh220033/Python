@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Calculator</title>
+</head>
+<body>
+    <h2>Simple Calculator</h2>
+
+    <form method="post">
+        <label for="num1">Select First Number:</label>
+        <select name="num1" id="num1">
+            <?php
+            // Using for loop to generate numbers from 0 to 10
+            for ($i = 0; $i <= 10; $i++) {
+                echo "<option value='$i'>$i</option>";
+            }
+            ?>
+        </select>
+
+        <label for="operator">Choose Operator:</label>
+        <select name="operator" id="operator">
+            <?php
+            // Using for loop to create options for operators
+            $operators = ['+', '-', '*', '/'];
+            foreach ($operators as $op) {
+                echo "<option value='$op'>$op</option>";
+            }
+            ?>
+        </select>
+
+        <label for="num2">Select Second Number:</label>
+        <select name="num2" id="num2">
+            <?php
+            // Using for loop to generate numbers from 0 to 10
+            for ($i = 0; $i <= 10; $i++) {
+                echo "<option value='$i'>$i</option>";
+            }
+            ?>
+        </select>
+
+        <input type="submit" name="calculate" value="Calculate">
+    </form>
+
+    <?php
+    // PHP to process the form input and display the result
+    if (isset($_POST['calculate'])) {
+        $num1 = $_POST['num1'];
+        $num2 = $_POST['num2'];
+        $operator = $_POST['operator'];
+        $result = 0;
+
+        // Calculate result based on the chosen operator
+        switch ($operator) {
+            case '+':
+                $result = $num1 + $num2;
+                break;
+            case '-':
+                $result = $num1 - $num2;
+                break;
+            case '*':
+                $result = $num1 * $num2;
+                break;
+            case '/':
+                $result = $num1 / $num2;
+                break;
+            default:
+                $result = "Invalid Operator";
+                break;
+        }
+
+        echo "<h3>Result: $result</h3>";
+    }
+    ?>
+</body>
+</html>
