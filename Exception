@@ -1,0 +1,17 @@
+<?php
+    function divide($numerator,$denominator){
+        if($denominator==0){
+            throw new Exception("Cannot divide by zero");
+        }
+        return $numerator/$denominator;
+    }
+    try{
+        $numerator=10;
+        $denominator=0;
+        $result=divide($numerator,$denominator);
+        echo "The result is $result";
+    }
+    catch(Exception $e){
+        echo "Error " .$e->getmessage();
+    }
+?>
