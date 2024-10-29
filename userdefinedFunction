@@ -1,0 +1,35 @@
+<?php
+
+//User defined function
+function showmsg(){
+    echo "Hello World ! <br><br>";
+}
+showmsg();
+
+//User defined factorial
+function factorial($x){
+    $f = 1;
+    for ($i = 1; $i <= $x; $i++) {
+        $f = $f * $i;
+    }
+    echo "Factorial of $x is $f <br><br>";
+}
+factorial(5);
+
+//User defined Simple interest
+function simplei($p,$r,$n){
+    $si = $p*$r*$n;
+    echo "Simple interest is $si <br><br>";
+}
+simplei(1000,2,5);
+
+//User defined Palindrome
+function palindrome($s){
+    if($s==strrev($s))
+        return "It is a palindrome";
+    else
+        return "It is not a palindrome";
+}
+echo " ".palindrome("naman")." ";
+?>
+
