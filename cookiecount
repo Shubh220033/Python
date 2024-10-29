@@ -1,0 +1,17 @@
+<?php
+if (isset($_COOKIE["view_count"]))
+{
+	$view_count=$_COOKIE["view_count"]+1;
+}
+else
+{
+	$view_count=1;
+}
+setcookie("view_count",$view_count,time()+3600);
+?>
+<html>
+<body>
+	<h1>Visit count</h1>
+	<h1>Counter <?php echo $view_count; ?></h1>
+</body>
+</html>
